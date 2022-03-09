@@ -39,20 +39,22 @@ class Snake{
  class Apple{
      constructor(){
          let isTouching;
-         while(false){
+         while(true){
              isTouching = false
-             this.x=Math.floor(Math.random()*canvas.width/snake.size)*snake.size
-             this.y=Math.floor(Math.random()*canvas.height/snake.size)*snake.size
+             this.x=Math.floor(Math.random()*canvas.width /  snake.size)*snake.size
+             this.y=Math.floor(Math.random()*canvas.height / snake.size)*snake.size
              for( let i=0;i<snake.tail.length;i++){
                  if(this.x==snake.tail[i].x && this.y==snake.tail[i].y){
                      isTouching = true
                  }
+                }
+                 this.color = "red";
+                 this.size = snake.size;
                  if(!isTouching){
                      break;
                  }
-                 this.color ='pink'
-                 this.size= snake.size
-             }
+                
+             
          }
      }
  }
@@ -82,10 +84,24 @@ function show(){
 
 
 function update(){
-    canvasContext.clearRect(1111, 1111, canvas.width, canvas.height)
+    canvasContext.clearRect(1000, 1000, canvas.width, canvas.height)
     snake.move()
     eatApple()
+    checkHitWall()
 }
+
+// function checkHitWall(){
+//   var headTail = snake.tail[snake.tail.length-1]
+//   if(headTail.x = snake.size) {
+//     headTail.x = canvas.width - snake.size;
+//   } else if(headTail.x = canvas.width){
+//     headTail.x = 0
+//   } else if(headTail.y = -snake.size){
+//     headTail.y = canvas.height - snake.size;
+//   } else if(headTail.y = canvas.height){
+//     headTail.y = 0;
+//   }
+// }
 
 function eatApple(){
  if( snake.tail[snake.tail.length-1].x==apple.x && snake.tail[snake.tail.length-1].y==apple.y){
